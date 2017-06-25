@@ -1,11 +1,10 @@
 package com.github.igorperikov.probable.octo.producer.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
+@Entity(name = "actors")
 public class ActorEntity {
     @Id
     @GeneratedValue
@@ -13,6 +12,9 @@ public class ActorEntity {
 
     @Column(nullable = false)
     private String name;
+
+    @ManyToMany
+    private Set<MovieEntity> movies = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -24,6 +26,15 @@ public class ActorEntity {
 
     public ActorEntity setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public Set<MovieEntity> getMovies() {
+        return movies;
+    }
+
+    public ActorEntity setMovies(Set<MovieEntity> movies) {
+        this.movies = movies;
         return this;
     }
 }

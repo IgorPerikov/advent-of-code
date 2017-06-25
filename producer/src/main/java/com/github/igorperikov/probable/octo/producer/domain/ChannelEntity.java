@@ -1,11 +1,10 @@
 package com.github.igorperikov.probable.octo.producer.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@Entity
+@Entity(name = "channels")
 public class ChannelEntity {
     @Id
     @GeneratedValue
@@ -13,4 +12,29 @@ public class ChannelEntity {
 
     @Column(nullable = false)
     private String channelName;
+
+    @OneToMany
+    private Set<EventEntity> events = new HashSet<>();
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getChannelName() {
+        return channelName;
+    }
+
+    public ChannelEntity setChannelName(String channelName) {
+        this.channelName = channelName;
+        return this;
+    }
+
+    public Set<EventEntity> getEvents() {
+        return events;
+    }
+
+    public ChannelEntity setEvents(Set<EventEntity> events) {
+        this.events = events;
+        return this;
+    }
 }
