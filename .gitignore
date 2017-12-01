@@ -1,13 +1,2 @@
-aws.properties
-
 *.iml
-.idea/
-
-build/
-*.class
-
-target
-build
-temp*
-dist
-test-output
+*.xml
